@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<head>
+	<title>Harry Potter Trivia Challenge</title>
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<style>
+		body {
+			background-image: url("https://www.purefandom.com/wp-content/uploads/2017/04/636013879527247628-567764177_0a4de910-687c-0133-4d4a-0e3f8b958f63.jpg");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-attachment: fixed;
+			background-color: black;
+		}
+		div.logo {
+			position: center;
+		}
+		div.questions {
+			border-radius: 25px;
+			background-color: white;
+			width: 750px;
+			padding-bottom: 10px;
+			padding-top: 10px;
+			margin-bottom: 20px;
+		}
+
+		div.begin {
+			display: block;
+			margin-top: 125px;
+    		margin-left: auto;
+    		margin-right: auto;
+			border-radius: 25px;
+			background-color: white;
+			width: 400px;
+		}
+
+		div.instructions {
+			margin-bottom: 10px;
+			display: block;
+			margin-left: auto;
+    		margin-right: auto;
+			border-radius: 25px;
+			background-color: white;
+			width: 600px;
+			height: 100px;
+			padding-top: 10px;
+			padding-right: 10px;
+			padding-left: 10px;
+			padding-bottom: 10px;
+		}
+
+		div.result {
+			border-radius: 25px;
+			background-color: white;
+			width: 750px;
+			padding-bottom: 10px;
+			padding-top: 10px;
+			margin-top: 100px;
+			margin-bottom: 20px;
+		}
+ 
+	</style>
+</head>
+<body>
+	<div id="logo" class="logo"><center>
+		<img src="https://vignette.wikia.nocookie.net/harrypotter/images/c/cf/Harry_Potter_White_Fill_Black_Outline_%28Film_Font%29.svg/revision/latest?cb=20100217090602" class="logo"></center>
+	</div>
+	<div id="instructions" class="instructions">
+		<h3><center>Answer all of the questions to the best of your ability </br> before the timeturner runs out!</center></h3>
+	</div>
+	<center><div id="questions" class="questions">
+		<h3 id="timer">Timer</h3>
+		<h3 id="question_number"></h3>
+		<h2 id="question_text"></h2>
+		<button id="answer_one">Answer One</button>
+		<button id="answer_two">Answer Two</button>
+		<button id="answer_three">Answer 3</button>
+		<button id="answer_four">Answer 4</button>
+	</div></center>
+	<center><div id="result" class="result">
+		<img id="gif">
+		<h2 id="correct_incorrect"></h2>
+		<button id="okay">Next</button>
+		<h3 id="right"></h3>
+		<h3 id="wrong"></h3>
+		<img src ="">
+	</div></center>
+	<div id="begin" class="begin"><center>
+		<img src="hp_begin_button.png">
+	</center></div>
+</body>
+<script>
+$(document).ready(function() {
+	
+	var questionscorrect = 0;
+	var questionsincorrect = 0;
+	var timer;
+	var question_number;
+	var question_text;
+	var answer_one; 
+	var answer_two;
+	var answer_three;
+	var answer_four;
+	var user_answer = [];
+	var correct_answer; 
+
+
+	var intervalId;
+    var clockRunning = false;
+
+
+	$("#result").hide();
+	$("#questions").hide();
+	$("#logo").hide();
+	$("#instructions").hide();
+
+
+
+$("#begin").click(function(){
+	$("#begin").fadeOut("6000");
+	$("#questions").fadeIn("12000");
+	$("#logo").fadeIn("12000");
+	$("#instructions").fadeIn("12000");
+
+});	
+
+
+function questionone () {
+		question_number = "Question Number One";
+		question_text = "How many broomsticks are flown in a full game of Quidditch?";
+		answer_one = "Fourteen";
+		answer_two = "Fifteen";
+		answer_three = "Two Hundred";
+		answer_four = "Sixteen";
+
+
+	$("#answer_one").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was Fifteen.");
+    });
+    $("#answer_two").on("click", function() {
+        questionscorrect++;
+        console.log(questionscorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Correct. You may be a wizard yet.");
+    });
+    $("#answer_three").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was Fifteen.");
+    });
+    $("#answer_four").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was Fifteen.");
+    });
+
+        $("#okay").on("click", function() {
+        	$("#result").hide();
+			$("#questions").show();
+			$("#logo").show();
+			$("#instructions").show();
+			questionformat(questiontwo());
+        });
+
+	}
+
+function questiontwo () {
+		question_number = "Question Number Two";
+		question_text = "Of which Hogwarts House was Terry Boot?";
+		answer_one = "Hufflepuff";
+		answer_two = "Slytherin";
+		answer_three = "Ravenclaw";
+		answer_four = "Gryffindor";
+
+
+	$("#answer_one").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was Ravenclaw.");
+    });
+    $("#answer_two").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was Ravenclaw.");
+    });
+    $("#answer_three").on("click", function() {
+        questionscorrect++;
+        console.log(questionscorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Correct. You must be up to no good.");
+    });
+    $("#answer_four").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was Ravenclaw.");
+    });
+
+    	$("#okay").on("click", function() {
+        	$("#result").hide();
+			$("#questions").show();
+			$("#logo").show();
+			$("#instructions").show();
+			questionformat(questionthree());
+     });
+
+	}
+
+function questionthree () {
+		question_number = "Question Number Three";
+		question_text = "Which team from the Ministry of Magic is responsible for modifying the memories of Muggles who have been explosed to magic?";
+		answer_one = "The Wizengamot";
+		answer_two = "Obliviators";
+		answer_three = "Aurors";
+		answer_four = "Unspeakables";
+
+
+	$("#answer_one").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was Obliviators.");
+    });
+    $("#answer_two").on("click", function() {
+        questionscorrect++;
+        console.log(questionscorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Curious.. Not many know of their existence.. Correct.");
+    });
+    $("#answer_three").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was Obliviators.");
+    });
+    $("#answer_four").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was Obliviators.");
+    });
+    	$("#okay").on("click", function() {
+        	$("#result").hide();
+			$("#questions").show();
+			$("#logo").show();
+			$("#instructions").show();
+			questionformat(questionfour());
+     });
+
+	}
+
+function questionfour () {
+		question_number = "Question Number Four";
+		question_text = "What year was Ollivanders founded?";
+		answer_one = "382 BC";
+		answer_two = "712 BC";
+		answer_three = "57 BC";
+		answer_four = "465 BC";
+
+
+	$("#answer_one").on("click", function() {
+        questionscorrect++;
+        console.log(questionscorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Correct.. Sir Nicholas, is that you?");
+    });
+    $("#answer_two").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was 382 BC.");
+    });
+    $("#answer_three").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was 382 BC.");
+    });
+    $("#answer_four").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The Answer was 382 BC.");
+    });
+    	$("#okay").on("click", function() {
+        	$("#result").hide();
+			$("#questions").show();
+			$("#logo").show();
+			$("#instructions").show();
+			questionformat(questionfive());
+     });
+
+	}
+
+function questionfive () {
+		question_number = "Question Number Five";
+		question_text = "Who says this: 'I wouldn't touch a filthy little blood traitor like her whatever she looked like.'";
+		answer_one = "Marcus Flint";
+		answer_two = "Lucius Malfoy";
+		answer_three = "Blaise Zabini";
+		answer_four = "Barty Crouch Jr.";
+
+
+	$("#answer_one").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The scoundrel who uttered those words was Blaise Zabini.");
+    });
+    $("#answer_two").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The scoundrel who uttered those words was Blaise Zabini.");
+    });
+    $("#answer_three").on("click", function() {
+        questionscorrect++;
+        console.log(questionscorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Correct. Harry.. I told you not to take your own quiz.");
+    });
+    $("#answer_four").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+    	$("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. The scoundrel who uttered those words was Blaise Zabini.");
+    });
+    	$("#okay").on("click", function() {
+        	$("#result").hide();
+			$("#questions").show();
+			$("#logo").show();
+			$("#instructions").show();
+			questionformat(questionsix());
+     });
+
+	}
+
+function questionsix () {
+		question_number = "Question Number Six";
+		question_text = "What organization did Hermione start in her 4th year?";
+		answer_one = "Witches for Equal Rights";
+		answer_two = "Wizards Against the Dark Arts";
+		answer_three = "The Order of the Phoenix";
+		answer_four = "Society for the Promotion of Elfish Welfare";
+
+
+	$("#answer_one").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. You don't remember the Society for the Promotion of Elfish Welfare?");
+    });
+    $("#answer_two").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. You don't remember the Society for the Promotion of Elfish Welfare?");
+    });
+    $("#answer_three").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. You don't remember the Society for the Promotion of Elfish Welfare?");
+    });
+    $("#answer_four").on("click", function() {
+        questionscorrect++;
+        console.log(questionscorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Correct. Harry.. I told you not to take your own quiz.");
+    });
+    	$("#okay").on("click", function() {
+        	$("#result").hide();
+			$("#questions").show();
+			$("#logo").show();
+			$("#instructions").show();
+			questionformat(questionseven());
+     });
+
+	}
+
+function questionseven () {
+		question_number = "Question Number Seven";
+		question_text = "What is the first ever password to Gryffindor Tower?";
+		answer_one = "Fortuna Major";
+		answer_two = "Caput Draconis";
+		answer_three = "Baubles";
+		answer_four = "Pig Snout";
+
+
+	$("#answer_one").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect.");
+    });
+    $("#answer_two").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect.");
+    });
+     $("#answer_three").on("click", function() {
+        questionscorrect++;
+        console.log(questionscorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Correct. Harry.. I told you not to take your own quiz.");
+    });
+    $("#answer_four").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect.");
+    });
+    	$("#okay").on("click", function() {
+        	$("#result").hide();
+			$("#questions").show();
+			$("#logo").show();
+			$("#instructions").show();
+			questionformat(questioneight());
+     });
+
+	}
+
+function questioneight () {
+		question_number = "Question Number Eight";
+		question_text = "Why did Cormac McLaggen miss the Quidditch tryouts in the year previous to Harry Potter and the Half-Blood Prince?";
+		answer_one = "He grew an extra leg due to a dueling accident";
+		answer_two = "He was in detention for melting his cauldron in potions class";
+		answer_three = "He broke his knee when he fell through a trick step";
+		answer_four = "He ate a pound of doxy eggs for a bet";
+
+
+	$("#answer_one").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect.");
+    });
+    $("#answer_two").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect.");
+    });
+     $("#answer_three").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect.");
+    });
+    $("#answer_four").on("click", function() {
+        questionscorrect++;
+        console.log(questionscorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Correct. Harry.. I told you not to take your own quiz.");
+    });
+    	$("#okay").on("click", function() {
+        	$("#result").hide();
+			$("#questions").show();
+			$("#logo").show();
+			$("#instructions").show();
+			questionformat(questionnine());
+     });
+
+	}
+
+function questionnine () {
+		question_number = "Question Number Nine";
+		question_text = "What is Harry and Ginny's middle child's first name?";
+		answer_one = "Albus Snape Potter";
+		answer_two = "Albus Severus Potter";
+		answer_three = "Albus Severus Weasley";
+		answer_four = "Albus Snape Weasley";
+
+
+	$("#answer_one").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect.");
+    });
+    $("#answer_two").on("click", function() {
+        questionscorrect++;
+        console.log(questionscorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Correct. Harry.. I told you not to take your own quiz.");
+    });
+     $("#answer_three").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect.");
+    });
+    $("#answer_four").on("click", function() {
+         questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect.");
+    });
+    	$("#okay").on("click", function() {
+        	$("#result").hide();
+			$("#questions").show();
+			$("#logo").show();
+			$("#instructions").show();
+			questionformat(questionten());
+     });
+
+	}
+
+function questionnine () {
+		question_number = "Question Number Nine 3/4";
+		question_text = "When do you first hear of the Room of Requirement and who was the user?";
+		answer_one = "Order of the Phoenix and Dobby";
+		answer_two = "Goblet of Fire and Dumbledore";
+		answer_three = "Order of the Phoenix and the DA";
+		answer_four = "The Prisoner of Azkaban and Remus Lupin";
+
+
+	$("#answer_one").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. This is the end.. See where you stand.");
+    });
+    $("#answer_two").on("click", function() {
+        questionscorrect++;
+        console.log(questionscorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Correct. Harry.. I told you not to take your own quiz. This is the end.. See where you stand.");
+    });
+     $("#answer_three").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. This is the end.. See where you stand.");
+    });
+    $("#answer_four").on("click", function() {
+        questionsincorrect++;
+        console.log(questionsincorrect);
+        $("#result").show();
+		$("#questions").hide();
+		$("#logo").hide();
+		$("#instructions").hide();
+		$("#correct_incorrect").html("Incorrect. This is the end.. See where you stand.");
+		$("#right").html(questioncorrect);
+		$("#wrong").html(questionincorrect);
+    });
+    	$("#okay").on("click", function() {
+        	var questionscorrect = 0;
+			var questionsincorrect = 0;
+        	$("#result").hide();
+			$("#questions").show();
+			$("#logo").show();
+			$("#instructions").show();
+			questionformat(questionone());
+     });
+
+	}
+
+function questionformat () {
+	$("#question_number").text(question_number);
+	$("#question_text").text(question_text);
+	$("#answer_one").text(answer_one);
+	$("#answer_two").text(answer_two);
+	$("#answer_three").text(answer_three);
+	$("#answer_four").text(answer_four);
+
+}
+	
+
+questionformat(questionone());
+
+
+
+
+});	
+</script>
+</html>
